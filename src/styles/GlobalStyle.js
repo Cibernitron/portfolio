@@ -9,22 +9,21 @@ const GlobalStyle = createGlobalStyle`
   min-height: 100vh;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${theme.colors.dark};;
+
   transition: transform 0.5s ease-in-out;
   overflow-y: hidden; /* Cache les barres de défilement par défaut */}
 
 
 .content-container {
   max-width: 80vw;
-  padding: 20px;
-  text-align: center;
+  /* padding: 20px; */
+  /* text-align: center; */
 
   h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
   }
+
 
   p {
     font-size: 1.25rem;

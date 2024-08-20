@@ -13,7 +13,6 @@ const Index = () => {
     { id: "home", label: "Accueil", component: <Home id="home" /> },
     { id: "about", label: "Profil", component: <About id="about" /> },
     { id: "skills", label: "Compétences", component: <Skills id="skills" /> },
-
     {
       id: "portfolio",
       label: "Portfolio",
@@ -45,9 +44,9 @@ const MainContainer = styled.div`
 
 const SectionsContainer = styled.div`
   height: 100vh;
-  overflow-y: auto; /* Permet le défilement automatique */
-  scroll-snap-type: y mandatory; /* Assure l'alignement des sections */
-  scroll-behavior: smooth; /* Comportement de défilement fluide */
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 `;
 
 const Section = styled.div`

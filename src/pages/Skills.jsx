@@ -36,7 +36,7 @@ const Skills = ({ id }) => {
   return (
     <Container id={id}>
       <Content>
-        <Title name="Mes Compétences" />
+        <Title name="Mes Compétences" color={theme.colors.dark} />
         <SkillsContent>
           <SkillsContainer>
             {skills.map((skill) => (
@@ -63,15 +63,15 @@ const Container = styled.div`
   min-height: 100vh;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   background-color: ${theme.colors.white};
 `;
 
 const Content = styled.div`
   width: 80%;
   margin: 0 auto;
-  text-align: center;
+  /* text-align: center; */
   margin-top: 109px;
 
   p {

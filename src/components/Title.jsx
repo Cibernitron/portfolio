@@ -1,13 +1,16 @@
 import styled from "styled-components";
-import { theme } from "../styles/themes";
 
-const Title = ({ name }) => {
-  return <StyledTitle>{name}</StyledTitle>;
+const Title = ({ name, color }) => {
+  return <StyledTitle color={color}>{name}</StyledTitle>;
 };
 
 export default Title;
 
 const StyledTitle = styled.h2`
-  text-align: center;
+  /* text-align: center; */
   font-size: 2.5rem;
+  position: relative;
+  top: 0px;
+
+  color: ${({ color }) => color};
 `;

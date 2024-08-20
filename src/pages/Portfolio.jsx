@@ -10,7 +10,7 @@ const projects = [
   {
     name: "Heroes Arena",
     image: LogoHA,
-    link: "https://example.com/heroes-arena",
+    link: "https://www.heroesarena.ciberweblab.fr/pages/index.php",
     title: "Projet Personnel.",
     dev: "Html, Css, Js, Php et Sql.",
     statut: "En cours de développement.",
@@ -39,51 +39,53 @@ const projects = [
 const Portfolio = ({ id }) => {
   return (
     <Container id={id} className="container">
-      <ContentContainer className="content-container">
-        <Title name="Mes Projets" />
-        <ProjectsList>
-          {projects.map((project, index) => (
-            <ProjectItem key={index}>
-              <ProjectName>{project.name}</ProjectName>
-              <ProjectLink
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {typeof project.image === "string" ? (
-                  <ProjectImage src={project.image} alt={project.name} />
-                ) : (
-                  <CustomComponentContainer>
-                    {project.image}
-                  </CustomComponentContainer>
-                )}
-                <Overlay>
-                  <CardTitle>
-                    <b>Nature :</b>
-                    <br />
-                    {project.title}
-                  </CardTitle>
-                  <Description>
-                    <b>Description :</b>
-                    <br />
-                    {project.description}
-                  </Description>
-                  <Dev>
-                    <b>Développé en :</b>
-                    <br />
-                    {project.dev}
-                  </Dev>
-                  <Statut>
-                    <b>Statut du projet :</b>
-                    <br />
-                    {project.statut}
-                  </Statut>
-                </Overlay>
-              </ProjectLink>
-            </ProjectItem>
-          ))}
-        </ProjectsList>
-      </ContentContainer>
+      <Content>
+        <Title name="Mes Projets" color={theme.colors.white} />
+        <ContentContainer className="content-container">
+          <ProjectsList>
+            {projects.map((project, index) => (
+              <ProjectItem key={index}>
+                <ProjectName>{project.name}</ProjectName>
+                <ProjectLink
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {typeof project.image === "string" ? (
+                    <ProjectImage src={project.image} alt={project.name} />
+                  ) : (
+                    <CustomComponentContainer>
+                      {project.image}
+                    </CustomComponentContainer>
+                  )}
+                  <Overlay>
+                    <CardTitle>
+                      <b>Nature :</b>
+                      <br />
+                      {project.title}
+                    </CardTitle>
+                    <Description>
+                      <b>Description :</b>
+                      <br />
+                      {project.description}
+                    </Description>
+                    <Dev>
+                      <b>Développé en :</b>
+                      <br />
+                      {project.dev}
+                    </Dev>
+                    <Statut>
+                      <b>Statut du projet :</b>
+                      <br />
+                      {project.statut}
+                    </Statut>
+                  </Overlay>
+                </ProjectLink>
+              </ProjectItem>
+            ))}
+          </ProjectsList>
+        </ContentContainer>
+      </Content>
     </Container>
   );
 };
@@ -92,9 +94,24 @@ export default Portfolio;
 
 // Styled components
 const Container = styled.div`
-  padding: 2rem;
+  scroll-snap-align: start;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
+const Content = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  /* text-align: center; */
+  margin-top: 109px;
 
+  p {
+    font-size: 1.25rem;
+    color: ${theme.colors.white};
+  }
+`;
 const ContentContainer = styled.div`
   text-align: center;
 `;
@@ -137,10 +154,9 @@ const CustomComponentContainer = styled.div`
   width: 300px;
   aspect-ratio: 1/1;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   border-radius: 16px;
-  background-color: #f0f0f0;
 `;
 
 const Overlay = styled.div`
@@ -184,9 +200,11 @@ const Statut = styled.p`
   margin: 0.5rem;
   text-align: center;
   line-height: 1.5rem;
+  color: ${theme.colors.white};
 `;
 
 const ProjectName = styled.h3`
   margin-top: 0.5rem;
   font-size: 1.2rem;
+  color: ${theme.colors.white};
 `;

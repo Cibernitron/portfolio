@@ -7,8 +7,8 @@ import { theme } from "../styles/themes";
 const About = ({ id }) => {
   return (
     <Container id={id}>
+      <Title name="À propos de moi" color={theme.colors.white} />
       <ContentContainer>
-        <Title name="À propos de moi" />
         <Photo src={photo} alt="Photo de Jason VAUQUELIN" />
         <Text>
           <p>
@@ -40,10 +40,12 @@ const About = ({ id }) => {
 export default About;
 
 const Container = styled.div`
-  padding: 20px;
+  /* padding: 20px; */
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  /* justify-content: center; */
   margin: 0 auto;
+  margin-top: 109px;
 `;
 
 const ContentContainer = styled.div`
@@ -61,6 +63,7 @@ const Photo = styled.img`
 const Text = styled.div`
   text-align: left;
   color: ${theme.colors.white}; /* Couleur du texte */
+  font-size: 1.5rem;
   p {
     margin-bottom: 1rem;
   }
