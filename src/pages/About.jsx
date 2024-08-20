@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import photo from "../assets/jason.png";
+import Title from "../components/Title";
+import { theme } from "../styles/themes";
 
 const About = ({ id }) => {
   return (
     <Container id={id}>
       <ContentContainer>
-        <Title>À propos de moi</Title>
+        <Title name="À propos de moi" />
         <Photo src={photo} alt="Photo de Jason VAUQUELIN" />
         <Text>
           <p>
@@ -39,21 +41,14 @@ export default About;
 
 const Container = styled.div`
   padding: 20px;
-  background-color: #222637; /* Optionnel : Ajouter un fond pour la section */
   display: flex;
   justify-content: center;
+  margin: 0 auto;
 `;
 
 const ContentContainer = styled.div`
-  max-width: 800px;
+  max-width: 80vw;
   margin: auto;
-`;
-
-const Title = styled.h2`
-  text-align: center;
-  color: white; /* Couleur du texte */
-  margin-bottom: 20px;
-  font-size: 2.5rem;
 `;
 
 const Photo = styled.img`
@@ -65,7 +60,7 @@ const Photo = styled.img`
 
 const Text = styled.div`
   text-align: left;
-  color: white; /* Couleur du texte */
+  color: ${theme.colors.white}; /* Couleur du texte */
   p {
     margin-bottom: 1rem;
   }

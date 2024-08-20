@@ -6,18 +6,14 @@ import About from "../pages/About";
 import Skills from "../pages/Skills";
 import Portfolio from "../pages/Portfolio";
 import Contact from "../pages/Contact";
-import Parcours from "../pages/Parcours";
+import { theme } from "../styles/themes";
 
 const Index = () => {
   const sections = [
     { id: "home", label: "Accueil", component: <Home id="home" /> },
     { id: "about", label: "Profil", component: <About id="about" /> },
     { id: "skills", label: "Compétences", component: <Skills id="skills" /> },
-    {
-      id: "parcours",
-      label: "Parcours",
-      component: <Parcours id="parcours" />,
-    },
+
     {
       id: "portfolio",
       label: "Portfolio",
@@ -59,8 +55,7 @@ const Section = styled.div`
   min-height: 100vh;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #222637;
+
+  background-color: ${theme.colors.dark};
   transition: transform 0.5s ease-in-out;
 `;

@@ -1,23 +1,26 @@
 import React from "react";
-import styled from "styled-components";
+import { FaDownload } from "react-icons/fa";
+import "../index.scss";
 
-const Button = ({ children, onClick }) => {
-  return <StyledButton onClick={onClick}>{children}</StyledButton>;
-};
-
-export default Button;
-
-const StyledButton = styled.button`
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-`;
+export default function Button({ name, href, onClick, download }) {
+  return (
+    <div className="button-container-1" onClick={onClick}>
+      <span className="mas">
+        {name}
+        <FaDownload className="button-icon" />
+      </span>
+      {href ? (
+        <a href={href} download={download} className="button-link">
+          <button className="nav-button">
+            {name}
+            <FaDownload className="button-icon" />
+          </button>
+        </a>
+      ) : (
+        <button className="nav-button" onClick={onClick}>
+          {name}
+        </button>
+      )}
+    </div>
+  );
+}

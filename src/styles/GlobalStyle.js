@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { theme } from "../styles/themes";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -10,13 +11,13 @@ const GlobalStyle = createGlobalStyle`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #222637;
+  background-color: ${theme.colors.dark};;
   transition: transform 0.5s ease-in-out;
   overflow-y: hidden; /* Cache les barres de défilement par défaut */}
 
 
 .content-container {
-  max-width: 800px;
+  max-width: 80vw;
   padding: 20px;
   text-align: center;
 

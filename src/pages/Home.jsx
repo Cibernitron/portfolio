@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
-import homeVideo from "../assets/homecode.mov";
+import homeVideo from "../assets/homecode.mp4";
+import { theme } from "../styles/themes";
 
 const Home = ({ id }) => {
   const [showTitle, setShowTitle] = useState(false);
@@ -82,13 +83,13 @@ const fadeIn = keyframes`
 `;
 
 const Name = styled.h1`
-  color: white;
+  color: ${theme.colors.white};
   text-align: center;
   margin: 0;
 `;
 
 const Work = styled.h2`
-  color: white;
+  color: ${theme.colors.white};
   font-style: italic;
   text-align: center;
 `;

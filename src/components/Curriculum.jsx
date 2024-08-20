@@ -1,17 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { FaDownload } from "react-icons/fa";
 import cv from "../assets/cv.jpg";
+import cvdl from "../assets/cv.pdf";
+import Button from "../components/Button";
 
 const Curriculum = () => {
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+
+  const handleImageClick = () => {
+    setIsViewerOpen(true);
+  };
+
+  const handleCloseViewer = () => {
+    setIsViewerOpen(false);
+  };
+
   return (
     <CVContainer>
-      <Preview>
+      <Preview onClick={handleImageClick}>
         <img src={cv} alt="Prévisualisation du CV" />
       </Preview>
-      <DownloadButton href={cv} download>
-        Télécharger le CV <FaDownload />
-      </DownloadButton>
+      <Button name="Télécharger le CV" href={cvdl} download />
+      {isViewerOpen && (
+        <ImageViewer onClick={handleCloseViewer}>
+          <ViewerImage src={cv} alt="CV en grand" />
+        </ImageViewer>
+      )}
     </CVContainer>
   );
 };
@@ -24,43 +38,40 @@ const CVContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
   margin: 0 auto;
-  width: 100%;
-  height: 100%;
   position: relative;
 `;
 
 const Preview = styled.div`
-  width: 100%;
-  margin-bottom: 2rem;
-  height: 100%;
-
+  cursor: pointer;
   img {
-    width: 100%;
+    max-width: 100%;
+    height: 35rem;
+    transition: transform 0.3s ease;
+    border: 1px solid black;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 `;
 
-const DownloadButton = styled.a`
+const ImageViewer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
-  position: absolute;
-  bottom: 2rem;
+  justify-content: center;
   align-items: center;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  z-index: 1000;
+  cursor: zoom-out;
+`;
 
-  &:hover {
-    background-color: #0056b3;
-  }
-
-  & > svg {
-    margin-left: 0.5rem; /* Espacement entre le texte et l'icône */
-  }
+const ViewerImage = styled.img`
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
 `;
