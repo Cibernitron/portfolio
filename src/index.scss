@@ -132,3 +132,62 @@ a {
   color: #0f0f18;
 }
 
+
+.button-container-2 {
+  position: relative;
+  width: 150px;
+  height: 75px;
+  margin-left: calc(50% - 75px);
+  overflow: hidden;
+  border: 1px solid #FFF6F6;
+  transition: 0.5s;
+  border-radius: 8px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+ 
+  button {
+   width: 101%;
+   height: 100%;
+   font-family: 'Lato', sans-serif;
+   font-weight: 500;
+   font-size: 1rem;
+   letter-spacing: 1px;
+   text-transform: uppercase;
+   @include button(#0f0f18, "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png",
+   3000%,
+   100%,
+   none,
+   #f6feff);
+   cursor: pointer;
+   -webkit-animation: ani2 0.7s steps(29) forwards;
+   animation: ani2 0.7s steps(29) forwards;
+ 
+   &:hover {
+    -webkit-animation: ani 0.7s steps(29) forwards;
+    animation: ani 0.7s steps(29) forwards;
+   }
+  }
+}
+
+ .mas2 {
+  position: absolute;
+  color: #0f0f18;
+  text-align: center;
+  width: 101%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;   
+  display: flex;
+  align-items: center;
+  justify-content: center;
+border-radius: 8px;
+background-color: #ffffff;
+font-family: 'Lato', sans-serif;
+font-weight: 700;
+font-size: 1rem;
+letter-spacing: 1px;
+text-transform: uppercase;
+ }

@@ -6,6 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import emailjs from "emailjs-com";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Button from "../components/SendButton";
 
 const Contact = ({ id }) => {
   const [formData, setFormData] = useState({
@@ -13,9 +16,6 @@ const Contact = ({ id }) => {
     email: "",
     message: "",
   });
-
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,7 +35,16 @@ const Contact = ({ id }) => {
       .then(
         (result) => {
           console.log(result.text);
-          setIsSubmitted(true);
+          toast.success("Votre message a été envoyé avec succès !", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
           setFormData({
             name: "",
             email: "",
@@ -44,8 +53,18 @@ const Contact = ({ id }) => {
         },
         (error) => {
           console.log(error.text);
-          setError(
-            "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer."
+          toast.error(
+            "Une erreur est survenue, votre message n'a pas été envoyé",
+            {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            }
           );
         }
       );
@@ -55,75 +74,72 @@ const Contact = ({ id }) => {
     <Container id={id} className="container">
       <Content className="content-container">
         <Title name="Me Contacter" />
-        <ContactInfo>
-          <ContactItem>
-            <FontAwesomeIcon icon={faPhone} />
-            <ContactText>06 75 52 42 39</ContactText>
-          </ContactItem>
-          <ContactItem>
-            <FontAwesomeIcon icon={faEnvelope} />
-            <ContactLink href="mailto:contact@jasonvauquelin.fr">
-              contact@jasonvauquelin.fr
-            </ContactLink>
-          </ContactItem>
-          <ContactLinkSocials
-            href="https://www.linkedin.com/in/jason-vauquelin/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon className="icon" icon={faLinkedin} />
-            <ContactText>Jason Vauquelin</ContactText>
-          </ContactLinkSocials>
-          <ContactLinkSocials
-            href="https://github.com/Cibernitron"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon className="icon" icon={faGithub} />
-            <ContactText>Cibernitron</ContactText>
-          </ContactLinkSocials>
-        </ContactInfo>
-        <Form onSubmit={handleSubmit}>
-          <FormItem>
-            <label htmlFor="name">Nom</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </FormItem>
-          <FormItem>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </FormItem>
-          <FormItem>
-            <label htmlFor="message">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            />
-          </FormItem>
-          <SubmitButton type="submit">Envoyer</SubmitButton>
-          {isSubmitted && (
-            <SuccessMessage>
-              Votre message a été envoyé avec succès !
-            </SuccessMessage>
-          )}
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-        </Form>
+        <ContentContainer>
+          <ContactInfo>
+            <ContactItem>
+              <FontAwesomeIcon icon={faPhone} />
+              <ContactText>06 75 52 42 39</ContactText>
+            </ContactItem>
+            <ContactItem>
+              <FontAwesomeIcon icon={faEnvelope} />
+              <ContactLink href="mailto:contact@jasonvauquelin.fr">
+                contact@jasonvauquelin.fr
+              </ContactLink>
+            </ContactItem>
+            <ContactLinkSocials
+              href="https://www.linkedin.com/in/jason-vauquelin/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon className="icon" icon={faLinkedin} />
+              <ContactText>Jason Vauquelin</ContactText>
+            </ContactLinkSocials>
+            <ContactLinkSocials
+              href="https://github.com/Cibernitron"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon className="icon" icon={faGithub} />
+              <ContactText>Cibernitron</ContactText>
+            </ContactLinkSocials>
+          </ContactInfo>
+          <Form onSubmit={handleSubmit}>
+            <FormItem>
+              <label htmlFor="name">Nom</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </FormItem>
+            <FormItem>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </FormItem>
+            <FormItem>
+              <label htmlFor="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              />
+            </FormItem>
+            <Button type="submit" name="Envoyer"></Button>
+          </Form>
+        </ContentContainer>
+        <ToastContainer />
       </Content>
     </Container>
   );
@@ -148,6 +164,13 @@ const Content = styled.div`
     font-size: 1.25rem;
     color: ${theme.colors.dark};
   }
+`;
+const ContentContainer = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 `;
 
 const ContactInfo = styled.div`
@@ -217,6 +240,9 @@ const Form = styled.form`
   margin-top: 40px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: 50%;
 `;
 
 const FormItem = styled.div`
@@ -244,25 +270,19 @@ const FormItem = styled.div`
 `;
 
 const SubmitButton = styled.button`
-  background-color: #0a66c2;
-  color: #fff;
+  background-color: ${theme.colors.dark};
+  color: ${theme.colors.white};
   padding: 12px 20px;
   font-size: 1rem;
+  font-weight: bold;
+  margin: 0 auto;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 
   &:hover {
-    background-color: ${theme.colors.dark};
+    background-color: ${theme.colors.white};
+    color: ${theme.colors.dark};
+    border: 1px solid ${theme.colors.dark};
   }
-`;
-
-const SuccessMessage = styled.p`
-  margin-top: 20px;
-  color: green;
-`;
-
-const ErrorMessage = styled.p`
-  margin-top: 20px;
-  color: red;
 `;
