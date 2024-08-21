@@ -56,7 +56,6 @@ const SkillContent = styled.div`
 `;
 
 const SkillName = styled.p`
-  font-size: 1.25rem;
   color: white;
   margin: 0;
   text-align: start;
@@ -66,15 +65,13 @@ const SkillBar = styled.div`
   background-color: #ddd;
   border-radius: 5px;
   overflow: hidden;
-  flex-grow: 1; /* La barre prend tout l'espace disponible */
+  flex-grow: 1;
   height: 10px;
 `;
 
 const SkillLevel = styled.div`
-  /* background-color: #6f99dd; */
   height: 100%;
   border-radius: 5px;
-
   transition: width 2s ease-in-out;
 
   &.visible {

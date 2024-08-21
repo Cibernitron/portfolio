@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { scroller } from "react-scroll";
 import logo from "../assets/jason.png";
 
 const Header = ({ sections }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleScrollTo = (id) => {
-    if (document.getElementById(id)) {
-      scroller.scrollTo(id, {
-        duration: 500,
-        delay: 10,
-        smooth: "easeInOutQuad",
-        containerId: "SectionsContainer",
-      });
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
       setIsOpen(false);
     } else {
       console.error(`Element with ID "${id}" not found.`);
@@ -26,7 +21,7 @@ const Header = ({ sections }) => {
 
   return (
     <Container>
-      <Logo src={logo} />
+      <Logo src={logo} onClick={() => handleScrollTo("home")} />
       <Hamburger onClick={toggleMenu} $isOpen={isOpen}>
         <span />
         <span />
@@ -50,7 +45,7 @@ const Container = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 0 2rem;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: space-between;
@@ -118,6 +113,7 @@ const NavBar = styled.nav`
     height: ${({ $isOpen }) => ($isOpen ? "100vh" : "0")};
     overflow: hidden;
     transition: height 0.3s ease-in-out;
+    padding-bottom: ${({ $isOpen }) => ($isOpen ? "4rem" : "0")};
   }
 `;
 
@@ -132,7 +128,7 @@ const NavLink = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
-    height: calc((100vh - 109px) / 5);
+    height: calc((100vh - 109px) / 6);
     display: flex;
     flex-direction: column;
     align-items: center;

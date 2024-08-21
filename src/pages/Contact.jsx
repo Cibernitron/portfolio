@@ -13,17 +13,38 @@ import Button from "../components/SendButton";
 const Contact = ({ id }) => {
   const [formData, setFormData] = useState({
     name: "",
+    firstName: "",
     email: "",
+    phone: "",
+    subject: "",
     message: "",
+    consent: false,
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, checked } = e.target;
+    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!formData.consent) {
+      toast.error(
+        "Vous devez accepter les conditions pour envoyer le formulaire.",
+        {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        }
+      );
+      return;
+    }
 
     emailjs
       .sendForm(
@@ -47,8 +68,12 @@ const Contact = ({ id }) => {
           });
           setFormData({
             name: "",
+            firstName: "",
             email: "",
+            phone: "",
+            subject: "",
             message: "",
+            consent: false,
           });
         },
         (error) => {
@@ -104,30 +129,65 @@ const Contact = ({ id }) => {
             </ContactLinkSocials>
           </ContactInfo>
           <Form onSubmit={handleSubmit}>
+            <FormGroup>
+              <FormItem>
+                <label htmlFor="name">Nom*</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </FormItem>
+              <FormItem>
+                <label htmlFor="firstName">Prénom</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                />
+              </FormItem>
+            </FormGroup>
+            <FormGroup>
+              <FormItem>
+                <label htmlFor="email">Email*</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </FormItem>
+              <FormItem>
+                <label htmlFor="phone">N° de téléphone</label>
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
+              </FormItem>
+            </FormGroup>
             <FormItem>
-              <label htmlFor="name">Nom</label>
+              <label htmlFor="subject">Objet*</label>
               <input
                 type="text"
-                id="name"
-                name="name"
-                value={formData.name}
+                id="subject"
+                name="subject"
+                value={formData.subject}
                 onChange={handleChange}
                 required
               />
             </FormItem>
             <FormItem>
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </FormItem>
-            <FormItem>
-              <label htmlFor="message">Message</label>
+              <label htmlFor="message">Message*</label>
               <textarea
                 id="message"
                 name="message"
@@ -136,7 +196,30 @@ const Contact = ({ id }) => {
                 required
               />
             </FormItem>
-            <Button type="submit" name="Envoyer"></Button>
+            <RequiredFieldsNote>* Champs obligatoires</RequiredFieldsNote>
+            <ConsentContainer>
+              <input
+                type="checkbox"
+                id="consent"
+                name="consent"
+                checked={formData.consent}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="consent">
+                En soumettant ce formulaire, j'accepte que mes données
+                personnelles soient utilisées pour me recontacter. Aucun autre
+                traitement ne sera effectué avec mes informations. Pour
+                connaître et exercer vos droits, veuillez consultez la{" "}
+                <a href="/privacy-policy">Politique de confidentialité</a>.
+              </label>
+            </ConsentContainer>
+
+            <Button
+              type="submit"
+              name="Envoyer"
+              disabled={!formData.consent}
+            ></Button>
           </Form>
         </ContentContainer>
         <ToastContainer />
@@ -147,10 +230,12 @@ const Contact = ({ id }) => {
 
 export default Contact;
 
+// Styled components
 const Container = styled.div`
   scroll-snap-align: start;
   min-height: 100vh;
   width: 100%;
+  padding-bottom: 4rem;
   display: flex;
   background-color: ${theme.colors.white};
 `;
@@ -161,10 +246,10 @@ const Content = styled.div`
   margin-top: 109px;
 
   p {
-    font-size: 1.25rem;
     color: ${theme.colors.dark};
   }
 `;
+
 const ContentContainer = styled.div`
   display: flex;
   width: 100%;
@@ -243,10 +328,27 @@ const Form = styled.form`
   justify-content: center;
   margin: 0 auto;
   width: 50%;
+  /* background-color: white; */
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 0;
+  }
+`;
+
+const FormGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 5rem;
+  margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    gap: 2rem;
+  }
 `;
 
 const FormItem = styled.div`
-  margin-bottom: 20px;
+  flex: 1;
 
   label {
     display: block;
@@ -269,20 +371,32 @@ const FormItem = styled.div`
   }
 `;
 
-const SubmitButton = styled.button`
-  background-color: ${theme.colors.dark};
-  color: ${theme.colors.white};
-  padding: 12px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  margin: 0 auto;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+const ConsentContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 
-  &:hover {
-    background-color: ${theme.colors.white};
-    color: ${theme.colors.dark};
-    border: 1px solid ${theme.colors.dark};
+  input[type="checkbox"] {
+    margin-right: 10px;
   }
+
+  label {
+    font-size: 0.9rem;
+    color: ${theme.colors.dark};
+
+    a {
+      color: #0a66c2;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+`;
+
+const RequiredFieldsNote = styled.p`
+  font-size: 0.9rem;
+  font-style: italic;
+  color: ${theme.colors.dark};
+  margin-top: 10px;
 `;

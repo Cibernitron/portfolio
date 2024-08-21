@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import photo from "../assets/jason2.png";
+import photo from "../assets/jason4.jpg";
 import Title from "../components/Title";
 import { theme } from "../styles/themes";
 
@@ -9,47 +9,34 @@ const About = ({ id }) => {
     <Container id={id}>
       <Title name="À propos de moi" color={theme.colors.white} />
       <ContentContainer>
-        <Photo src={photo} alt="Photo de Jason VAUQUELIN" />
         <Text>
+          <Photo src={photo} alt="Photo de Jason VAUQUELIN" />
           <p>
-            Développeur web passionné, je suis titulaire d'une licence de
-            Concepteur Développeur d'Applications obtenue après une reconversion
-            professionnelle réussie, suite à la formation DWWM (Développeur Web
-            et Web Mobile) chez Creative Formation. Cette transition vers le
-            développement web reflète ma volonté de m'adapter à un environnement
-            technologique en constante évolution et ma passion pour la création
-            de solutions numériques innovantes.
+            <strong>Développeur web passionné</strong>, j'ai effectué une
+            reconversion réussie après 10 ans dans le commerce. Titulaire d'une
+            licence en Conception et Développement d'Applications, et formé au
+            développement web (DWWM) chez Creative Formation, je m'adapte à
+            l'évolution technologique avec un réel enthousiasme pour la création
+            de solutions numériques.
           </p>
+
           <p>
-            Fort d'une expérience solide de 10 ans dans le commerce, où j'ai
-            occupé des rôles variés tels que vendeur, logisticien, responsable
-            de rayon, et assistant commercial, je dispose d'une compréhension
-            approfondie du cycle de vente et de la gestion de la relation
-            client. Ces compétences, combinées à mon expertise technique, me
-            permettent d'aborder les projets de développement web avec un sens
-            aigu du service client et une capacité à traduire les besoins
-            commerciaux en solutions techniques efficaces.
+            Mon expérience dans le commerce m'a apporté une{" "}
+            <strong>compréhension approfondie de la relation client</strong> et
+            du cycle de vente, que je mets à profit dans mes projets web. Grâce
+            à des compétences en{" "}
+            <strong>HTML, CSS, JavaScript, PHP, SQL</strong>, ainsi qu'en{" "}
+            <strong>React</strong> et <strong>Laravel</strong>, j'ai participé à
+            des projets innovants chez <strong>Videlum</strong>, renforçant mes
+            capacités en <strong>gestion de projet</strong> et{" "}
+            <strong>optimisation des performances</strong>.
           </p>
+
           <p>
-            Mon parcours dans le développement web est complété par des
-            compétences techniques avancées en HTML, CSS, JavaScript, PHP, SQL,
-            ainsi qu'en frameworks modernes tels que React et Laravel. Durant un
-            stage de deux mois et une alternance d'un an chez Videlum, j'ai eu
-            l'opportunité de travailler sur des projets innovants, développant
-            des applications web robustes et performantes en collaboration avec
-            des équipes multidisciplinaires. Mon expérience chez Videlum m'a
-            également permis de perfectionner mes compétences en gestion de
-            projet, en optimisation des performances web, et en développement de
-            solutions sur mesure répondant aux besoins spécifiques des clients.
-          </p>
-          <p>
-            Engagé dans une démarche d'apprentissage continu, je reste à l'affût
-            des dernières tendances technologiques et je m'efforce constamment
-            d'améliorer mes compétences, tant sur le plan technique que
-            professionnel. Mon objectif est de contribuer à des projets qui
-            allient performance, innovation et expérience utilisateur de
-            qualité, tout en continuant à développer mon expertise dans le
-            domaine du développement web.
+            Toujours en quête de perfectionnement, je m'efforce d'améliorer mes
+            compétences pour contribuer à des projets alliant{" "}
+            <strong>performance, innovation</strong>, et{" "}
+            <strong>expérience utilisateur</strong>.
           </p>
         </Text>
       </ContentContainer>
@@ -59,12 +46,11 @@ const About = ({ id }) => {
 
 export default About;
 
+// Styled components
 const Container = styled.div`
-  /* padding: 20px; */
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  margin: 0 auto;
+  margin: 2rem auto;
   margin-top: 109px;
 `;
 
@@ -74,22 +60,26 @@ const ContentContainer = styled.div`
 `;
 
 const Photo = styled.img`
-  height: 15rem;
-  float: left;
-  margin: 0 20px 20px 0; /* Marge autour de l'image */
-  border-radius: 10px; /* Optionnel : Ajouter des coins arrondis à l'image */
+  float: left; /* Permet au texte de contourner l'image */
+  margin: 0 20px 20px 0; /* Marge autour de l'image pour espacer le texte */
+  border-radius: 10px; /* Coins arrondis */
+  max-width: 350px; /* Limite la largeur maximale à 30% du conteneur parent */
+  height: auto;
+
+  @media (max-width: 768px) {
+    float: none; /* Annule le flottement sur mobile */
+    display: block; /* Centre l'image */
+    margin: 0 auto 20px; /* Marge en bas pour séparer du texte */
+    max-width: 250px; /* Image prend toute la largeur */
+  }
 `;
 
 const Text = styled.div`
+  color: ${theme.colors.white};
+  font-size: 1rem;
   text-align: left;
-  color: ${theme.colors.white}; /* Couleur du texte */
-  font-size: 1.2rem;
-  p {
-    margin: 0;
-    margin-bottom: 1rem;
-  }
 
-  @media (max-width: 768px) {
-    font-size: 1rem;
+  p {
+    margin: 0 0 1rem 0;
   }
 `;

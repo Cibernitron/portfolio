@@ -110,7 +110,6 @@ const Content = styled.div`
   margin-top: 109px;
 
   p {
-    font-size: 1.25rem;
     color: ${theme.colors.white};
   }
 `;

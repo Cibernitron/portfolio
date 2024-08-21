@@ -7,10 +7,10 @@ const Title = ({ name, color }) => {
 export default Title;
 
 const StyledTitle = styled.h2`
-  /* text-align: center; */
   font-size: 2.5rem;
   position: relative;
   top: 0px;
-
+  margin: 0;
+  margin-bottom: 2rem;
   color: ${({ color }) => color};
 `;

@@ -40,20 +40,26 @@ const CVContainer = styled.div`
   justify-content: center;
   margin: 0 auto;
   position: relative;
-  max-height: 500px; /* Limite la hauteur du conteneur CV */
-  overflow: hidden; /* Assure que rien ne dépasse en dehors du conteneur */
+  max-height: 600px;
+  overflow: hidden;
 `;
 
 const Preview = styled.div`
   cursor: pointer;
+  padding: 10px; /* Ajoute du padding pour créer de l'espace autour de l'image */
+  overflow: hidden;
+  box-sizing: border-box; /* Assure que le padding est pris en compte dans les dimensions totales */
+
   img {
     max-width: 100%;
-    max-height: 450px; /* Assure que l'image ne dépasse pas la hauteur du conteneur */
+    max-height: 450px;
     transition: transform 0.3s ease;
     border: 1px solid black;
 
     &:hover {
-      transform: scale(1.05);
+      transform: scale(
+        1.05
+      ); /* Assure que l'image reste dans les limites du conteneur */
     }
   }
 `;
