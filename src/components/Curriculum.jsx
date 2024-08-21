@@ -40,13 +40,15 @@ const CVContainer = styled.div`
   justify-content: center;
   margin: 0 auto;
   position: relative;
+  max-height: 500px; /* Limite la hauteur du conteneur CV */
+  overflow: hidden; /* Assure que rien ne dépasse en dehors du conteneur */
 `;
 
 const Preview = styled.div`
   cursor: pointer;
   img {
     max-width: 100%;
-    height: 35rem;
+    max-height: 450px; /* Assure que l'image ne dépasse pas la hauteur du conteneur */
     transition: transform 0.3s ease;
     border: 1px solid black;
 

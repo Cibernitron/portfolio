@@ -88,4 +88,8 @@ const Text = styled.div`
     margin: 0;
     margin-bottom: 1rem;
   }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;

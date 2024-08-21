@@ -44,9 +44,12 @@ const MainContainer = styled.div`
 
 const SectionsContainer = styled.div`
   height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+
+  @media (min-width: 768px) {
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
 `;
 
 const Section = styled.div`

@@ -35,7 +35,6 @@ const projects = [
     description: "Site internet de la Bifrost Agency. ",
   },
 ];
-
 const Portfolio = ({ id }) => {
   return (
     <Container id={id} className="container">
@@ -46,11 +45,7 @@ const Portfolio = ({ id }) => {
             {projects.map((project, index) => (
               <ProjectItem key={index}>
                 <ProjectName>{project.name}</ProjectName>
-                <ProjectLink
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <ProjectLink>
                   {typeof project.image === "string" ? (
                     <ProjectImage src={project.image} alt={project.name} />
                   ) : (
@@ -81,6 +76,13 @@ const Portfolio = ({ id }) => {
                     </Statut>
                   </Overlay>
                 </ProjectLink>
+                <VisitButton
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visiter le projet
+                </VisitButton>
               </ProjectItem>
             ))}
           </ProjectsList>
@@ -130,13 +132,37 @@ const ProjectItem = styled.li`
   position: relative;
   width: 300px;
   margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const ProjectLink = styled.a`
+const ProjectLink = styled.div`
   display: block;
   position: relative;
   text-decoration: none;
   color: inherit;
+`;
+
+const VisitButton = styled.a`
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: ${theme.colors
+    .white}; /* Ajustez cette couleur selon votre thème */
+  color: ${theme.colors.dark};
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  display: inline-block;
+
+  &:hover {
+    background-color: ${theme.colors
+      .dark}; /* Ajustez cette couleur selon votre thème */
+    color: ${theme.colors.white};
+    border: 1px solid ${theme.colors.white};
+  }
 `;
 
 const ProjectImage = styled.img`
