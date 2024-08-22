@@ -9,6 +9,7 @@ import emailjs from "emailjs-com";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "../components/SendButton";
+import Footer from "../components/Footer";
 
 const Contact = ({ id }) => {
   const [formData, setFormData] = useState({
@@ -96,141 +97,149 @@ const Contact = ({ id }) => {
   };
 
   return (
-    <Container id={id} className="container">
-      <Content className="content-container">
-        <Title name="Me Contacter" />
-        <ContentContainer>
-          <ContactInfo>
-            <ContactItem>
-              <FontAwesomeIcon icon={faPhone} />
-              <ContactText>06 75 52 42 39</ContactText>
-            </ContactItem>
-            <ContactItem>
-              <FontAwesomeIcon icon={faEnvelope} />
-              <ContactLink href="mailto:contact@jasonvauquelin.fr">
-                contact@jasonvauquelin.fr
-              </ContactLink>
-            </ContactItem>
-            <ContactLinkSocials
-              href="https://www.linkedin.com/in/jason-vauquelin/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon className="icon" icon={faLinkedin} />
-              <ContactText>Jason Vauquelin</ContactText>
-            </ContactLinkSocials>
-            <ContactLinkSocials
-              href="https://github.com/Cibernitron"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon className="icon" icon={faGithub} />
-              <ContactText>Cibernitron</ContactText>
-            </ContactLinkSocials>
-          </ContactInfo>
-          <Form onSubmit={handleSubmit}>
-            <FormGroup>
+    <End>
+      <Container id={id} className="container">
+        <Content className="content-container">
+          <Title name="Me Contacter" />
+          <ContentContainer>
+            <ContactInfo>
+              <ContactItem>
+                <FontAwesomeIcon icon={faPhone} />
+                <ContactText>06 75 52 42 39</ContactText>
+              </ContactItem>
+              <ContactItem>
+                <FontAwesomeIcon icon={faEnvelope} />
+                <ContactLink href="mailto:contact@jasonvauquelin.fr">
+                  contact@jasonvauquelin.fr
+                </ContactLink>
+              </ContactItem>
+              <ContactLinkSocials
+                href="https://www.linkedin.com/in/jason-vauquelin/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon className="icon" icon={faLinkedin} />
+                <ContactText>Jason Vauquelin</ContactText>
+              </ContactLinkSocials>
+              <ContactLinkSocials
+                href="https://github.com/Cibernitron"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon className="icon" icon={faGithub} />
+                <ContactText>Cibernitron</ContactText>
+              </ContactLinkSocials>
+            </ContactInfo>
+            <Form onSubmit={handleSubmit}>
+              <FormGroup>
+                <FormItem>
+                  <label htmlFor="name">Nom*</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </FormItem>
+                <FormItem>
+                  <label htmlFor="firstName">Prénom</label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                  />
+                </FormItem>
+              </FormGroup>
+              <FormGroup>
+                <FormItem>
+                  <label htmlFor="email">Email*</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </FormItem>
+                <FormItem>
+                  <label htmlFor="phone">N° de téléphone</label>
+                  <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                  />
+                </FormItem>
+              </FormGroup>
               <FormItem>
-                <label htmlFor="name">Nom*</label>
+                <label htmlFor="subject">Objet*</label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
                   onChange={handleChange}
                   required
                 />
               </FormItem>
               <FormItem>
-                <label htmlFor="firstName">Prénom</label>
-                <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                />
-              </FormItem>
-            </FormGroup>
-            <FormGroup>
-              <FormItem>
-                <label htmlFor="email">Email*</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
+                <label htmlFor="message">Message*</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
                   onChange={handleChange}
                   required
                 />
               </FormItem>
-              <FormItem>
-                <label htmlFor="phone">N° de téléphone</label>
+              <RequiredFieldsNote>* Champs obligatoires</RequiredFieldsNote>
+              <ConsentContainer>
                 <input
-                  type="text"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
+                  type="checkbox"
+                  id="consent"
+                  name="consent"
+                  checked={formData.consent}
                   onChange={handleChange}
+                  required
                 />
-              </FormItem>
-            </FormGroup>
-            <FormItem>
-              <label htmlFor="subject">Objet*</label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                required
-              />
-            </FormItem>
-            <FormItem>
-              <label htmlFor="message">Message*</label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-              />
-            </FormItem>
-            <RequiredFieldsNote>* Champs obligatoires</RequiredFieldsNote>
-            <ConsentContainer>
-              <input
-                type="checkbox"
-                id="consent"
-                name="consent"
-                checked={formData.consent}
-                onChange={handleChange}
-                required
-              />
-              <label htmlFor="consent">
-                En soumettant ce formulaire, j'accepte que mes données
-                personnelles soient utilisées pour me recontacter. Aucun autre
-                traitement ne sera effectué avec mes informations. Pour
-                connaître et exercer vos droits, veuillez consultez la{" "}
-                <a href="/privacy-policy">Politique de confidentialité</a>.
-              </label>
-            </ConsentContainer>
+                <label htmlFor="consent">
+                  En soumettant ce formulaire, j'accepte que mes données
+                  personnelles soient utilisées pour me recontacter. Aucun autre
+                  traitement ne sera effectué avec mes informations. Pour
+                  connaître et exercer vos droits, veuillez consultez la{" "}
+                  <a href="/privacyPolicy">Politique de confidentialité</a>.
+                </label>
+              </ConsentContainer>
 
-            <Button
-              type="submit"
-              name="Envoyer"
-              disabled={!formData.consent}
-            ></Button>
-          </Form>
-        </ContentContainer>
-        <ToastContainer />
-      </Content>
-    </Container>
+              <Button
+                type="submit"
+                name="Envoyer"
+                disabled={!formData.consent}
+              ></Button>
+            </Form>
+          </ContentContainer>
+          <ToastContainer />
+        </Content>
+      </Container>
+      <Footer />
+    </End>
   );
 };
 
 export default Contact;
 
 // Styled components
+const End = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+`;
 const Container = styled.div`
   scroll-snap-align: start;
   min-height: 100vh;

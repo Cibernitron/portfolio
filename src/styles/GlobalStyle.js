@@ -1,9 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "roboto", "purista-web", sans-serif;
   line-height: 1.5;
   font-size: 16px;
   font-weight: 400;
@@ -22,7 +21,7 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 5rem;
   line-height: 1.1;
 }
 

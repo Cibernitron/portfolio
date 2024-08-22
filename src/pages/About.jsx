@@ -13,7 +13,7 @@ const About = ({ id }) => {
           <Photo src={photo} alt="Photo de Jason VAUQUELIN" />
           <p>
             <strong>Développeur web passionné</strong>, j'ai effectué une
-            reconversion réussie après 10 ans dans le commerce. Titulaire d'une
+            reconversion réussie après 8 ans dans le commerce. Titulaire d'une
             licence en Conception et Développement d'Applications, et formé au
             développement web (DWWM) chez Creative Formation, je m'adapte à
             l'évolution technologique avec un réel enthousiasme pour la création
@@ -46,7 +46,6 @@ const About = ({ id }) => {
 
 export default About;
 
-// Styled components
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -60,17 +59,16 @@ const ContentContainer = styled.div`
 `;
 
 const Photo = styled.img`
-  float: left; /* Permet au texte de contourner l'image */
-  margin: 0 20px 20px 0; /* Marge autour de l'image pour espacer le texte */
-  border-radius: 10px; /* Coins arrondis */
-  max-width: 350px; /* Limite la largeur maximale à 30% du conteneur parent */
+  float: left;
+  margin: 0 20px 20px 0;
+  max-width: 350px;
   height: auto;
 
   @media (max-width: 768px) {
-    float: none; /* Annule le flottement sur mobile */
-    display: block; /* Centre l'image */
-    margin: 0 auto 20px; /* Marge en bas pour séparer du texte */
-    max-width: 250px; /* Image prend toute la largeur */
+    float: none;
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 250px;
   }
 `;
 

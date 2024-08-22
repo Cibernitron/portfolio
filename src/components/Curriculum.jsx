@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import cv from "../assets/cv.jpg";
-import cvdl from "../assets/cv.pdf";
+import cv from "../assets/cvjason.png";
+import cvdl from "../assets/cvjason.pdf";
 import Button from "../components/Button";
 
 const Curriculum = () => {

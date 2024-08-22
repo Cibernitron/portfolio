@@ -38,7 +38,7 @@ const VideoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-y: hidden; /* Hide default scrollbars */
+  overflow-y: hidden;
   scroll-snap-type: y mandatory;
   z-index: 1;
 
@@ -49,8 +49,8 @@ const VideoContainer = styled.div`
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.3); /* Filtre de fond */
-    z-index: 1; /* Assurez-vous que ce pseudo-élément est au-dessus de la vidéo */
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
   }
 `;
 
@@ -69,8 +69,8 @@ const Title = styled.div`
   justify-content: center;
   flex-direction: column;
   opacity: 0;
-  animation: ${({ $show }) => ($show ? fadeIn : "none")} 5s forwards;
-  z-index: 2; /* Assurez-vous que le titre est au-dessus du filtre de fond */
+  animation: ${({ $show }) => ($show ? fadeIn : "none")} 10s forwards;
+  z-index: 2;
 `;
 
 const fadeIn = keyframes`
@@ -92,4 +92,5 @@ const Work = styled.h2`
   color: ${theme.colors.white};
   font-style: italic;
   text-align: center;
+  font-size: 2rem;
 `;
