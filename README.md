@@ -36,9 +36,6 @@ Vous pouvez consulter mon portfolio en ligne à l'adresse suivante : [jasonvauqu
 - **Visionneuse d'image** : Option pour afficher une version agrandie du CV.
 - **Téléchargement du CV** : Téléchargez mon CV en un clic.
 
-## Licence
-
-Ce projet est sous la licence [MIT](LICENSE). Voir le fichier `LICENSE` pour plus de détails.
 
 ## Contact
 
