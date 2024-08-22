@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { useInView } from "react-intersection-observer";
 
-// Animation keyframes pour l'effet de remplissage
 const fillAnimation = (level) => keyframes`
   from {
     width: 0;
@@ -12,7 +11,6 @@ const fillAnimation = (level) => keyframes`
   }
 `;
 
-// Composant Skill
 const Skill = ({ name, level, color }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,

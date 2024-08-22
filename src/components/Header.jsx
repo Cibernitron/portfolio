@@ -140,7 +140,6 @@ const NavBar = styled.nav`
     height: ${({ $isOpen }) => ($isOpen ? "100vh" : "0")};
     overflow: hidden;
     transition: height 0.3s ease-in-out;
-    padding-bottom: ${({ $isOpen }) => ($isOpen ? "4rem" : "0")};
   }
 `;
 

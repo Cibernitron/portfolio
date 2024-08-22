@@ -3,15 +3,6 @@ import styled from "styled-components";
 import { theme } from "../styles/themes";
 
 const Footer = () => {
-  const handleScrollTo = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    } else {
-      console.error(`Element with ID "${id}" not found.`);
-    }
-  };
-
   return (
     <FooterContainer>
       <FooterContent>
@@ -34,7 +25,7 @@ export default Footer;
 // Styled components
 const FooterContainer = styled.footer`
   background-color: ${theme.colors.dark};
-  padding: 20px 0;
+  padding: 0.5rem 0;
   color: ${theme.colors.white};
 `;
 
@@ -51,9 +42,7 @@ const FooterContent = styled.div`
   }
 `;
 
-const CopyrightSection = styled.div`
-  margin-bottom: 20px;
-`;
+const CopyrightSection = styled.div``;
 
 const LinksSection = styled.div`
   display: flex;

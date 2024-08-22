@@ -118,7 +118,7 @@ const Contact = ({ id }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon className="icon" icon={faLinkedin} />
+                <FontAwesomeIcon className="icon linked" icon={faLinkedin} />
                 <ContactText>Jason Vauquelin</ContactText>
               </ContactLinkSocials>
               <ContactLinkSocials
@@ -126,7 +126,7 @@ const Contact = ({ id }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon className="icon" icon={faGithub} />
+                <FontAwesomeIcon className="icon github" icon={faGithub} />
                 <ContactText>Cibernitron</ContactText>
               </ContactLinkSocials>
             </ContactInfo>
@@ -265,10 +265,10 @@ const ContentContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  align-items: flex-start;
 `;
 
 const ContactInfo = styled.div`
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -306,7 +306,6 @@ const ContactLink = styled.a`
     color: #0a66c2;
   }
 `;
-
 const ContactLinkSocials = styled.a`
   display: inline-flex;
   align-items: center;
@@ -316,17 +315,25 @@ const ContactLinkSocials = styled.a`
   text-decoration: none;
   transition: color 1s ease;
 
-  .icon {
-    font-size: 50px;
-    margin-right: 10px;
-    transition: transform 0.5s ease;
-    &:hover {
+  &:hover {
+    .linked {
+      color: #0a66c2;
+      transition: color 1s ease;
+    }
+    .github {
+      color: #6b737b;
+      transition: color 1s ease;
+    }
+
+    .icon {
       animation: ${shakeAnimation} 0.5s ease;
     }
   }
 
-  &:hover {
-    color: #0a66c2;
+  .icon {
+    font-size: 50px;
+    margin-right: 10px;
+    transition: transform 0.5s ease;
   }
 `;
 

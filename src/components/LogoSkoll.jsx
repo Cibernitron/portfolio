@@ -12,7 +12,7 @@ const DisplayLogo = () => {
     const intervalId = setInterval(() => {
       setVisibleEyes((prev) => !prev);
     }, 1000);
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
   }, []);
 
   return (

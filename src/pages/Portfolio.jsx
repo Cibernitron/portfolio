@@ -106,7 +106,6 @@ const Container = styled.div`
 const Content = styled.div`
   width: 80%;
   margin: 0 auto;
-  /* text-align: center; */
   margin-top: 109px;
 
   p {

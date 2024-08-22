@@ -23,6 +23,9 @@ body {
 h1 {
   font-size: 5rem;
   line-height: 1.1;
+  @media (max-width: 768px) {
+    font-size: 10vw;
+  }
 }
 
 p{

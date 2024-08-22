@@ -93,4 +93,7 @@ const Work = styled.h2`
   font-style: italic;
   text-align: center;
   font-size: 2rem;
+  @media (max-width: 768px) {
+    font-size: 4vw;
+  }
 `;
