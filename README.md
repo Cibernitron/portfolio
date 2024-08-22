@@ -44,5 +44,5 @@ Ce projet est sous la licence [MIT](LICENSE). Voir le fichier `LICENSE` pour plu
 
 Pour toute question ou demande, vous pouvez me contacter :
 
-- **Email** : jason-vauquelin@laposte.net
+- 📧 jason-vauquelin@laposte.net
 - [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/jason-vauquelin)](https://www.linkedin.com/in/jason-vauquelin/)
