@@ -31,7 +31,7 @@ const projects = [
     link: "https://bifrost.ciberweblab.fr/",
     title: "Projet d'apprentissage chez Videlum.",
     dev: "React & Laravel.",
-    statut: "Projet en attente du client.",
+    statut: "Projet en pause, en attente du client.",
     description: "Site internet de la Bifrost Agency. ",
   },
 ];

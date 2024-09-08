@@ -12,31 +12,39 @@ const About = ({ id }) => {
         <Text>
           <Photo src={photo} alt="Photo de Jason VAUQUELIN" />
           <p>
-            <strong>Développeur web passionné</strong>, j'ai effectué une
-            reconversion réussie après 8 ans dans le commerce. Titulaire d'une
-            licence en Conception et Développement d'Applications, et formé au
-            développement web (DWWM) chez Creative Formation, je m'adapte à
-            l'évolution technologique avec un réel enthousiasme pour la création
-            de solutions numériques.
+            <strong>Développeur web passionné</strong>, je suis passé d'une
+            carrière de 8 ans dans le commerce à une spécialisation dans le
+            développement web, un domaine qui m'enthousiasme profondément.
+            Détenteur d'une{" "}
+            <strong>
+              licence en Conception et Développement d'Applications
+            </strong>{" "}
+            et d'une formation approfondie en développement web (DWWM) chez
+            Creative Formation, j'ai acquis une solide expertise technique tout
+            en restant constamment à l'affût des dernières évolutions
+            technologiques.
           </p>
 
           <p>
-            Mon expérience dans le commerce m'a apporté une{" "}
+            Mon expérience dans le commerce m'a permis de développer une{" "}
             <strong>compréhension approfondie de la relation client</strong> et
-            du cycle de vente, que je mets à profit dans mes projets web. Grâce
-            à des compétences en{" "}
-            <strong>HTML, CSS, JavaScript, PHP, SQL</strong>, ainsi qu'en{" "}
-            <strong>React</strong> et <strong>Laravel</strong>, j'ai participé à
-            des projets innovants chez <strong>Videlum</strong>, renforçant mes
-            capacités en <strong>gestion de projet</strong> et{" "}
+            du cycle de vente, compétences que j'intègre efficacement dans mes
+            projets web. Ma maîtrise de technologies telles que{" "}
+            <strong>HTML, CSS, JavaScript, PHP, SQL</strong>, ainsi que des
+            frameworks modernes comme <strong>React</strong> et{" "}
+            <strong>Laravel</strong>, m'a permis de contribuer à des projets
+            innovants chez <strong>Videlum</strong>, où j'ai renforcé mes
+            capacités en <strong>gestion de projet</strong> et en{" "}
             <strong>optimisation des performances</strong>.
           </p>
 
           <p>
-            Toujours en quête de perfectionnement, je m'efforce d'améliorer mes
-            compétences pour contribuer à des projets alliant{" "}
+            Toujours en quête d'excellence, je suis déterminé à apporter des
+            solutions numériques alliant{" "}
             <strong>performance, innovation</strong>, et{" "}
-            <strong>expérience utilisateur</strong>.
+            <strong>expérience utilisateur</strong>. Mon objectif est de
+            participer à des projets ambitieux où je pourrai mettre à profit mes
+            compétences techniques et ma passion pour le développement web.
           </p>
         </Text>
       </ContentContainer>
