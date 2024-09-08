@@ -1,10 +1,40 @@
-import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useState, useEffect } from "react";
+import styled, { keyframes, css } from "styled-components";
 import logo from "../assets/jason.png";
 import { theme } from "../styles/themes";
 
 const Header = ({ sections }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showHeader, setShowHeader] = useState(false); // Nouveau state pour afficher/cacher le header
+
+  // Fonction pour gérer l'apparition ou disparition du header en fonction des sections "home" et "about"
+  useEffect(() => {
+    const handleIntersection = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.target.id === "home" && entry.isIntersecting) {
+          setShowHeader(false); // Cache le header lorsque la section "home" est visible
+        }
+        if (entry.target.id === "about" && entry.isIntersecting) {
+          setShowHeader(true); // Affiche le header lorsque la section "about" est visible
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.5, // L'élément est visible à 50%
+    });
+
+    const homeSection = document.getElementById("home");
+    const aboutSection = document.getElementById("about");
+
+    if (homeSection) observer.observe(homeSection);
+    if (aboutSection) observer.observe(aboutSection);
+
+    return () => {
+      if (homeSection) observer.unobserve(homeSection);
+      if (aboutSection) observer.unobserve(aboutSection);
+    };
+  }, []);
 
   const handleScrollTo = (id) => {
     const element = document.getElementById(id);
@@ -21,7 +51,7 @@ const Header = ({ sections }) => {
   };
 
   return (
-    <Container>
+    <Container $showHeader={showHeader}>
       <Logo
         src={logo}
         $isOpen={isOpen}
@@ -45,6 +75,25 @@ const Header = ({ sections }) => {
 
 export default Header;
 
+// Animation pour faire apparaître et disparaître le header
+const slideDown = keyframes`
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+`;
+
+const slideUp = keyframes`
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+`;
+
 const Container = styled.header`
   position: fixed;
   top: 0;
@@ -57,11 +106,25 @@ const Container = styled.header`
   z-index: 1000;
   box-sizing: border-box;
   background-color: rgba(15, 15, 24, 0.9);
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+
+  ${({ $showHeader }) =>
+    $showHeader
+      ? css`
+          transform: translateY(0);
+          animation: ${slideDown} 0.3s ease forwards;
+        `
+      : css`
+          transform: translateY(-100%);
+          animation: ${slideUp} 0.3s ease forwards;
+        `}
 
   @media (max-width: 768px) {
     border-bottom: 1px solid ${theme.colors.white};
   }
 `;
+
 const shakeAnimation = keyframes`
   0%, 100% {
     transform: rotate(0);
@@ -73,6 +136,7 @@ const shakeAnimation = keyframes`
     transform: rotate(10deg);
   }
 `;
+
 const Logo = styled.img`
   height: 75px;
   border: 1px solid ${theme.colors.white};
@@ -82,6 +146,7 @@ const Logo = styled.img`
   &:hover {
     animation: ${shakeAnimation} 0.5s ease;
   }
+
   @media (max-width: 768px) {
     height: 50px;
     margin: 15px 0;
@@ -155,7 +220,7 @@ const NavLink = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
-    height: calc((100vh - 109px) / 5);
+    height: calc((100vh - 82.4px) / 5);
     display: flex;
     flex-direction: column;
     align-items: center;

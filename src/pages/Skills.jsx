@@ -7,14 +7,14 @@ import { theme } from "../styles/themes";
 
 const Skills = ({ id }) => {
   const skills = [
-    { name: "HTML", level: "80%", color: `${theme.colors.dark}` },
-    { name: "CSS", level: "80%", color: `${theme.colors.dark}` },
-    { name: "JavaScript", level: "70%", color: `${theme.colors.dark}` },
-    { name: "SQL", level: "60%", color: `${theme.colors.dark}` },
-    { name: "PHP", level: "55%", color: `${theme.colors.dark}` },
-    { name: "React", level: "70%", color: `${theme.colors.dark}` },
-    { name: "Laravel", level: "55%", color: `${theme.colors.dark}` },
-    { name: "Java", level: "15%", color: `${theme.colors.dark}` },
+    { name: "HTML", level: "90%", color: `${theme.colors.dark}` },
+    { name: "CSS", level: "90%", color: `${theme.colors.dark}` },
+    { name: "JavaScript", level: "90%", color: `${theme.colors.dark}` },
+    { name: "SQL", level: "70%", color: `${theme.colors.dark}` },
+    { name: "PHP", level: "60%", color: `${theme.colors.dark}` },
+    { name: "React", level: "80%", color: `${theme.colors.dark}` },
+    { name: "Laravel", level: "60%", color: `${theme.colors.dark}` },
+    { name: "Java", level: "20%", color: `${theme.colors.dark}` },
   ];
 
   return (
@@ -105,10 +105,11 @@ const CurriculumContainer = styled.div`
   padding: 0 2rem; /* Adjust padding as needed */
   box-sizing: border-box;
   position: relative;
-  top: 0; /* Reset top position */
+  top: -50px; /* Reset top position */
 
   @media (max-width: 768px) {
     width: 100%;
     max-width: 100%;
+    top: 0;
   }
 `;

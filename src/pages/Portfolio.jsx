@@ -7,15 +7,15 @@ import LogoBifrost from "../components/LogoBifrost";
 import LogoHA from "../assets/logo_heroes-arena.png";
 
 const projects = [
-  {
-    name: "Heroes Arena",
-    image: LogoHA,
-    link: "https://www.heroesarena.ciberweblab.fr/pages/index.php",
-    title: "Projet Personnel.",
-    dev: "Html, Css, Js, Php et Sql.",
-    statut: "En cours de développement.",
-    description: "Jeu de carte de heros de Comics.",
-  },
+  // {
+  //   name: "Heroes Arena",
+  //   image: LogoHA,
+  //   link: "https://www.heroesarena.ciberweblab.fr/pages/index.php",
+  //   title: "Projet Personnel.",
+  //   dev: "Html, Css, Js, Php et Sql.",
+  //   statut: "En cours de développement.",
+  //   description: "Jeu de carte de heros de Comics.",
+  // },
   {
     name: "Skoll Winter Festival",
     image: <Skoll />,

@@ -100,36 +100,32 @@ const Contact = ({ id }) => {
     <End>
       <Container id={id} className="container">
         <Content className="content-container">
-          <Title name="Me Contacter" />
           <ContentContainer>
-            <ContactInfo>
-              <ContactItem>
-                <FontAwesomeIcon icon={faPhone} />
-                <ContactText>06 75 52 42 39</ContactText>
-              </ContactItem>
-              <ContactItem>
-                <FontAwesomeIcon icon={faEnvelope} />
-                <ContactLink href="mailto:contact@jasonvauquelin.fr">
-                  contact@jasonvauquelin.fr
-                </ContactLink>
-              </ContactItem>
-              <ContactLinkSocials
-                href="https://www.linkedin.com/in/jason-vauquelin/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon className="icon linked" icon={faLinkedin} />
-                <ContactText>Jason Vauquelin</ContactText>
-              </ContactLinkSocials>
-              <ContactLinkSocials
-                href="https://github.com/Cibernitron"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon className="icon github" icon={faGithub} />
-                <ContactText>Cibernitron</ContactText>
-              </ContactLinkSocials>
-            </ContactInfo>
+            <ContentLeft>
+              <Title name="Me Contacter" />
+              <ContactInfo>
+                <ContactLinkSocials href="mailto:contact@jasonvauquelin.fr">
+                  <FontAwesomeIcon className="icon mail" icon={faEnvelope} />
+                  <ContactText>contact@jasonvauquelin.fr</ContactText>
+                </ContactLinkSocials>
+                <ContactLinkSocials
+                  href="https://www.linkedin.com/in/jason-vauquelin/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FontAwesomeIcon className="icon linked" icon={faLinkedin} />
+                  <ContactText>Jason Vauquelin</ContactText>
+                </ContactLinkSocials>
+                <ContactLinkSocials
+                  href="https://github.com/Cibernitron"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FontAwesomeIcon className="icon github" icon={faGithub} />
+                  <ContactText>Cibernitron</ContactText>
+                </ContactLinkSocials>
+              </ContactInfo>
+            </ContentLeft>
             <Form onSubmit={handleSubmit}>
               <FormGroup>
                 <FormItem>
@@ -167,7 +163,7 @@ const Contact = ({ id }) => {
                   />
                 </FormItem>
                 <FormItem>
-                  <label htmlFor="phone">N° de téléphone</label>
+                  <label htmlFor="phone">Téléphone</label>
                   <input
                     type="text"
                     id="phone"
@@ -240,11 +236,18 @@ const End = styled.div`
   flex-direction: column;
   width: 100vw;
 `;
+const ContentLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  @media (max-width: 768px) {
+    gap: 0;
+  }
+`;
 const Container = styled.div`
   scroll-snap-align: start;
   min-height: 100vh;
   width: 100%;
-  padding-bottom: 4rem;
   display: flex;
   background-color: ${theme.colors.white};
 `;
@@ -266,6 +269,9 @@ const ContentContainer = styled.div`
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: flex-start;
+  @media (max-width: 768px) {
+    gap: 2rem;
+  }
 `;
 
 const ContactInfo = styled.div`
@@ -294,18 +300,9 @@ const shakeAnimation = keyframes`
 `;
 
 const ContactText = styled.span`
-  margin-left: 10px;
+  margin-left: 1rem;
 `;
 
-const ContactLink = styled.a`
-  margin-left: 10px;
-  color: ${theme.colors.dark};
-  text-decoration: none;
-
-  &:hover {
-    color: #0a66c2;
-  }
-`;
 const ContactLinkSocials = styled.a`
   display: inline-flex;
   align-items: center;
@@ -324,15 +321,24 @@ const ContactLinkSocials = styled.a`
       color: #6b737b;
       transition: color 1s ease;
     }
+    .mail {
+      color: #3e2886;
+      transition: color 1s ease;
+    }
 
     .icon {
       animation: ${shakeAnimation} 0.5s ease;
     }
   }
+  .linked {
+    margin-right: 8px;
+  }
 
+  .github {
+    margin-right: 4px;
+  }
   .icon {
     font-size: 50px;
-    margin-right: 10px;
     transition: transform 0.5s ease;
   }
 `;
@@ -344,6 +350,7 @@ const Form = styled.form`
   justify-content: center;
   margin: 0 auto;
   width: 50%;
+
   /* background-color: white; */
 
   @media (max-width: 768px) {
@@ -356,7 +363,7 @@ const FormGroup = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 5rem;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   @media (max-width: 768px) {
     gap: 2rem;
@@ -369,7 +376,7 @@ const FormItem = styled.div`
   label {
     display: block;
     font-size: 1.1rem;
-    margin-bottom: 8px;
+    margin-bottom: 0px;
     color: ${theme.colors.dark};
   }
 

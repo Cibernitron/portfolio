@@ -13,15 +13,16 @@ const fillAnimation = (level) => keyframes`
 
 const Skill = ({ name, level, color }) => {
   const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1, // Le seuil pour déclencher l'animation (10% visible)
   });
 
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (inView) {
-      setIsVisible(true);
+      setIsVisible(true); // Déclenche l'animation
+    } else {
+      setIsVisible(false); // Réinitialise l'animation quand la section sort de la vue
     }
   }, [inView]);
 
