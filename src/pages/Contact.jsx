@@ -271,6 +271,7 @@ const ContentContainer = styled.div`
   align-items: flex-start;
   @media (max-width: 768px) {
     gap: 2rem;
+    margin-bottom: 2rem;
   }
 `;
 

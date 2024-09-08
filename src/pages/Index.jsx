@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Home from "../pages/Home";
@@ -6,9 +6,13 @@ import About from "../pages/About";
 import Skills from "../pages/Skills";
 import Portfolio from "../pages/Portfolio";
 import Contact from "../pages/Contact";
+import LoadingPage from "../components/LoadingPage";
 import { theme } from "../styles/themes";
 
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [headerVisible, setHeaderVisible] = useState(false); // État pour contrôler la visibilité du header
+
   const sections = [
     { id: "home", label: "Accueil", component: <Home id="home" /> },
     { id: "about", label: "Profil", component: <About id="about" /> },
@@ -21,9 +25,49 @@ const Index = () => {
     { id: "contact", label: "Contact", component: <Contact id="contact" /> },
   ];
 
+  useEffect(() => {
+    // Simuler un temps de chargement pour démonstration
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Durée simulée du chargement
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  // Fonction pour détecter la visibilité de la section "about" et mettre à jour la visibilité du header
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setHeaderVisible(true); // Montre le header quand la section "about" est visible
+          } else {
+            setHeaderVisible(false); // Cache le header si la section "about" n'est pas visible
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      observer.observe(aboutSection);
+    }
+
+    return () => {
+      if (aboutSection) {
+        observer.unobserve(aboutSection);
+      }
+    };
+  }, []);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
+
   return (
     <MainContainer>
-      <Header sections={sections} />
+      <Header sections={sections} isVisible={headerVisible} />
       <SectionsContainer id="SectionsContainer">
         {sections.map((section) => (
           <Section key={section.id} id={section.id}>

@@ -3,36 +3,33 @@ import styled, { keyframes, css } from "styled-components";
 import logo from "../assets/jason.png";
 import { theme } from "../styles/themes";
 
-const Header = ({ sections }) => {
+const Header = ({ sections, isVisible }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showHeader, setShowHeader] = useState(false); // Nouveau state pour afficher/cacher le header
+  const [showHeader, setShowHeader] = useState(false);
 
-  // Fonction pour gérer l'apparition ou disparition du header en fonction des sections "home" et "about"
   useEffect(() => {
-    const handleIntersection = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.target.id === "home" && entry.isIntersecting) {
-          setShowHeader(false); // Cache le header lorsque la section "home" est visible
-        }
-        if (entry.target.id === "about" && entry.isIntersecting) {
-          setShowHeader(true); // Affiche le header lorsque la section "about" est visible
-        }
-      });
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShowHeader(true);
+          } else {
+            setShowHeader(false);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
 
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.5, // L'élément est visible à 50%
-    });
-
-    const homeSection = document.getElementById("home");
     const aboutSection = document.getElementById("about");
-
-    if (homeSection) observer.observe(homeSection);
-    if (aboutSection) observer.observe(aboutSection);
+    if (aboutSection) {
+      observer.observe(aboutSection);
+    }
 
     return () => {
-      if (homeSection) observer.unobserve(homeSection);
-      if (aboutSection) observer.unobserve(aboutSection);
+      if (aboutSection) {
+        observer.unobserve(aboutSection);
+      }
     };
   }, []);
 
@@ -75,22 +72,12 @@ const Header = ({ sections }) => {
 
 export default Header;
 
-// Animation pour faire apparaître et disparaître le header
 const slideDown = keyframes`
   from {
     transform: translateY(-100%);
   }
   to {
     transform: translateY(0);
-  }
-`;
-
-const slideUp = keyframes`
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-100%);
   }
 `;
 
@@ -110,15 +97,11 @@ const Container = styled.header`
   transition: transform 0.3s ease-in-out;
 
   ${({ $showHeader }) =>
-    $showHeader
-      ? css`
-          transform: translateY(0);
-          animation: ${slideDown} 0.3s ease forwards;
-        `
-      : css`
-          transform: translateY(-100%);
-          animation: ${slideUp} 0.3s ease forwards;
-        `}
+    $showHeader &&
+    css`
+      transform: translateY(0);
+      animation: ${slideDown} 0.5s ease;
+    `}
 
   @media (max-width: 768px) {
     border-bottom: 1px solid ${theme.colors.white};
