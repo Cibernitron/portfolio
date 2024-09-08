@@ -5,6 +5,7 @@ import { theme } from "../styles/themes";
 
 const Home = ({ id }) => {
   const [showTitle, setShowTitle] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -14,15 +15,27 @@ const Home = ({ id }) => {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleVideoLoaded = () => {
+    setVideoLoaded(true);
+  };
+
   return (
     <VideoContainer id={id}>
-      <Video autoPlay loop muted playsInline>
+      <Video
+        autoPlay
+        loop
+        muted
+        playsInline
+        onCanPlayThrough={handleVideoLoaded}
+      >
         <source src={homeVideo} type="video/mp4" />
       </Video>
-      <Title $show={showTitle}>
-        <Name>Jason VAUQUELIN</Name>
-        <Work>Concepteur & Développeur d'Application Web</Work>
-      </Title>
+      {videoLoaded && (
+        <Title $show={showTitle}>
+          <Name>Jason VAUQUELIN</Name>
+          <Work>Concepteur & Développeur d'Application Web</Work>
+        </Title>
+      )}
     </VideoContainer>
   );
 };

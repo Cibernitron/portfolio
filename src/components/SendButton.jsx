@@ -24,7 +24,7 @@ export default function Button({ name, href, onClick, download, disabled }) {
 const ButtonDisabled = styled.div`
   position: relative;
   width: 150px;
-  height: 75px;
+  height: 50px;
   margin-left: calc(50% - 75px);
   overflow: hidden;
   border: 1px solid ${theme.colors.dark};

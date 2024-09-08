@@ -34,33 +34,6 @@ const Index = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  // Fonction pour détecter la visibilité de la section "about" et mettre à jour la visibilité du header
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setHeaderVisible(true); // Montre le header quand la section "about" est visible
-          } else {
-            setHeaderVisible(false); // Cache le header si la section "about" n'est pas visible
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    const aboutSection = document.getElementById("about");
-    if (aboutSection) {
-      observer.observe(aboutSection);
-    }
-
-    return () => {
-      if (aboutSection) {
-        observer.unobserve(aboutSection);
-      }
-    };
-  }, []);
-
   if (isLoading) {
     return <LoadingPage />;
   }

@@ -3,7 +3,7 @@ import styled, { keyframes, css } from "styled-components";
 import logo from "../assets/jason.png";
 import { theme } from "../styles/themes";
 
-const Header = ({ sections, isVisible }) => {
+const Header = ({ sections }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
 
@@ -12,26 +12,35 @@ const Header = ({ sections, isVisible }) => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setShowHeader(true);
-          } else {
-            setShowHeader(false);
+            // Check if the intersecting section is "home"
+            if (entry.target.id === "home") {
+              setShowHeader(false);
+            } else {
+              setShowHeader(true);
+            }
           }
         });
       },
       { threshold: 0.5 }
     );
 
-    const aboutSection = document.getElementById("about");
-    if (aboutSection) {
-      observer.observe(aboutSection);
-    }
+    // Observe each section
+    sections.forEach((section) => {
+      const el = document.getElementById(section.id);
+      if (el) {
+        observer.observe(el);
+      }
+    });
 
     return () => {
-      if (aboutSection) {
-        observer.unobserve(aboutSection);
-      }
+      sections.forEach((section) => {
+        const el = document.getElementById(section.id);
+        if (el) {
+          observer.unobserve(el);
+        }
+      });
     };
-  }, []);
+  }, [sections]);
 
   const handleScrollTo = (id) => {
     const element = document.getElementById(id);
