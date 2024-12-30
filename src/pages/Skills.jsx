@@ -7,14 +7,14 @@ import { theme } from "../styles/themes";
 
 const Skills = ({ id }) => {
   const skills = [
-    { name: "HTML", level: "90%", color: `${theme.colors.dark}` },
-    { name: "CSS", level: "90%", color: `${theme.colors.dark}` },
-    { name: "JavaScript", level: "90%", color: `${theme.colors.dark}` },
-    { name: "SQL", level: "70%", color: `${theme.colors.dark}` },
-    { name: "PHP", level: "60%", color: `${theme.colors.dark}` },
-    { name: "React", level: "80%", color: `${theme.colors.dark}` },
-    { name: "Laravel", level: "60%", color: `${theme.colors.dark}` },
-    { name: "Java", level: "20%", color: `${theme.colors.dark}` },
+    { name: "HTML", level: "90%" },
+    { name: "CSS", level: "90%" },
+    { name: "JavaScript", level: "90%" },
+    { name: "SQL", level: "70%" },
+    { name: "PHP", level: "60%" },
+    { name: "React", level: "80%" },
+    { name: "Laravel", level: "60%" },
+    { name: "Java", level: "20%" },
   ];
 
   return (
@@ -24,12 +24,7 @@ const Skills = ({ id }) => {
         <SkillsContent>
           <SkillsContainer>
             {skills.map((skill) => (
-              <Skill
-                key={skill.name}
-                name={skill.name}
-                level={skill.level}
-                color={skill.color}
-              />
+              <Skill key={skill.name} name={skill.name} level={skill.level} />
             ))}
           </SkillsContainer>
           <CurriculumContainer>

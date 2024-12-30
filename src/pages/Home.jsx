@@ -1,41 +1,63 @@
 import React, { useEffect, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import homeVideo from "../assets/homecode.mp4";
 import { theme } from "../styles/themes";
 
 const Home = ({ id }) => {
-  const [showTitle, setShowTitle] = useState(false);
-  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [nameText, setNameText] = useState(""); // Le texte du nom
+  const [workText, setWorkText] = useState(""); // Le texte du titre
+
+  const fullName = "Jaason VAUQUELIN";
+  const fullWork = "CConcepteur & Développeur d'Application Web";
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowTitle(true);
-    }, 500);
+      startTypingAnimation(); // Démarre l'animation de frappe après 1 seconde
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
 
-  const handleVideoLoaded = () => {
-    setVideoLoaded(true);
+  // Fonction pour démarrer l'animation de frappe
+  const startTypingAnimation = () => {
+    let nameIndex = 0;
+    let workIndex = 0;
+
+    // Fonction pour taper le nom
+    const typeName = () => {
+      if (nameIndex < fullName.length) {
+        setNameText((prev) => prev + fullName.charAt(nameIndex)); // Ajoute la lettre au nom
+        nameIndex++;
+        setTimeout(typeName, 100); // Réduit le délai à 100ms pour une frappe plus rapide
+      }
+    };
+
+    // Fonction pour taper le titre
+    const typeWork = () => {
+      if (workIndex < fullWork.length) {
+        setWorkText((prev) => prev + fullWork.charAt(workIndex)); // Ajoute la lettre au titre
+        workIndex++;
+        setTimeout(typeWork, 75); // Réduit le délai à 75ms pour un affichage rapide du titre
+      }
+    };
+
+    // Démarre l'animation de frappe du nom
+    typeName();
+
+    // Commence l'animation du titre après que le nom soit complètement affiché
+    setTimeout(typeWork, fullName.length * 120); // Le délai pour que le titre commence après le nom
   };
 
   return (
     <VideoContainer id={id}>
-      <Video
-        autoPlay
-        loop
-        muted
-        playsInline
-        onCanPlayThrough={handleVideoLoaded}
-      >
+      <Video autoPlay loop muted playsInline>
         <source src={homeVideo} type="video/mp4" />
       </Video>
-      {videoLoaded && (
-        <Title $show={showTitle}>
-          <Name>Jason VAUQUELIN</Name>
-          <Work>Concepteur & Développeur d'Application Web</Work>
-        </Title>
-      )}
+
+      <Title>
+        <Name>{nameText}</Name>
+        <Work>{workText}</Work>
+      </Title>
     </VideoContainer>
   );
 };
@@ -81,18 +103,7 @@ const Title = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  opacity: 0;
-  animation: ${({ $show }) => ($show ? fadeIn : "none")} 10s forwards;
   z-index: 2;
-`;
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 `;
 
 const Name = styled.h1`

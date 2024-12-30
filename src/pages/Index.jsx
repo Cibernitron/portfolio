@@ -6,11 +6,9 @@ import About from "../pages/About";
 import Skills from "../pages/Skills";
 import Portfolio from "../pages/Portfolio";
 import Contact from "../pages/Contact";
-import LoadingPage from "../components/LoadingPage";
 import { theme } from "../styles/themes";
 
 const Index = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [headerVisible, setHeaderVisible] = useState(false); // État pour contrôler la visibilité du header
 
   const sections = [
@@ -24,19 +22,6 @@ const Index = () => {
     },
     { id: "contact", label: "Contact", component: <Contact id="contact" /> },
   ];
-
-  useEffect(() => {
-    // Simuler un temps de chargement pour démonstration
-    const timeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000); // Durée simulée du chargement
-
-    return () => clearTimeout(timeout);
-  }, []);
-
-  if (isLoading) {
-    return <LoadingPage />;
-  }
 
   return (
     <MainContainer>

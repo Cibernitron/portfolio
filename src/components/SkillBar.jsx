@@ -11,7 +11,7 @@ const fillAnimation = (level) => keyframes`
   }
 `;
 
-const Skill = React.memo(({ name, level, color }) => {
+const Skill = React.memo(({ name, level }) => {
   const { ref, inView } = useInView({
     threshold: 0.1, // Le seuil pour déclencher l'animation (10% visible)
   });
@@ -34,8 +34,8 @@ const Skill = React.memo(({ name, level, color }) => {
           <SkillLevel
             className={isVisible ? "visible" : ""}
             $level={level}
-            style={{ width: isVisible ? level : 0, backgroundColor: color }}
-          />
+            style={{ width: isVisible ? level : 0 }}
+          ></SkillLevel>
         </SkillBar>
       </SkillContent>
     </SkillContainer>
@@ -72,8 +72,18 @@ const SkillLevel = styled.div`
   height: 100%;
   border-radius: 5px;
   transition: width 2s ease-in-out;
+  position: relative;
+  display: flex;
+  justify-content: center;
   will-change: width; /* Ajout de cette propriété pour améliorer les performances */
-
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 40%,
+    rgba(98, 98, 98, 1) 70%,
+    rgba(0, 0, 0, 1) 95%
+  );
   &.visible {
     animation: ${({ $level }) => fillAnimation($level)} 2s forwards;
   }
