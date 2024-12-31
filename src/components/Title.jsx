@@ -11,6 +11,7 @@ const StyledTitle = styled.h2`
   position: relative;
   top: 0px;
   margin: 0;
+  width: fit-content;
   margin-bottom: 2rem;
   color: ${({ color }) => color};
 `;
